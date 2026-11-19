@@ -3,7 +3,7 @@ from infer import load_model, enhance_rgb
 import baselines as B, metrics as M
 
 st.set_page_config("Underwater Enhancer", layout="wide")
-st.title("🌊 AI-Based Underwater Image Enhancer")
+st.title("AI-Based Underwater Image Enhancer")
 st.caption("Maritime security prototype · original and enhanced shown together — output is decision support, not evidence.")
 
 CK = next((p for p in ("best_v2.pt", "best.pt") if os.path.exists(p)), None)

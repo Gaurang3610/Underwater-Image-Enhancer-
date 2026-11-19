@@ -1,8 +1,7 @@
-venv/
-__pycache__/
-*.pyc
-.DS_Store
-.ipynb_checkpoints/
-data/
-*.zip
-train_log.txt
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+opencv-python-headless
+scikit-image
+numpy
+pillow
+streamlit
