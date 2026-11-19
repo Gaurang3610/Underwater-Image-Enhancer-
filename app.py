@@ -15,6 +15,16 @@ st.markdown(f"""<style>
 .stButton>button, .stDownloadButton>button {{width:100%; border-radius:8px}}
 </style>""", unsafe_allow_html=True)
 
+DARK_CSS = """<style>
+.stApp, [data-testid=stAppViewContainer], [data-testid=stMain] {background:#111E2B !important; color:#E6EEF4 !important}
+.stApp h1,.stApp h2,.stApp h3,.stApp p,.stApp label,.stApp span,.stApp li,.stApp div[data-testid=stMarkdownContainer],.stApp [data-testid=stCaptionContainer] {color:#E6EEF4 !important}
+[data-testid=stVerticalBlockBorderWrapper] {background:#162534 !important; border-color:#27425A !important}
+[data-testid=stFileUploaderDropzone] {background:#162534 !important}
+[data-baseweb=select]>div {background:#1B2D3D !important; color:#E6EEF4 !important}
+.stButton>button:not([kind=primary]), .stDownloadButton>button:not([kind=primary]) {background:#1B2D3D !important; color:#E6EEF4 !important; border-color:#27425A !important}
+hr {border-color:#27425A !important}
+</style>"""
+
 CK = next((p for p in ("best_v2.pt", "best.pt") if os.path.exists(p)), None)
 @st.cache_resource
 def load(p): return load_model(p) if p else None
@@ -79,7 +89,8 @@ def reset(): ss.s, ss.col, ss.con, ss.bri = 100, 0, 0, 0
 def go(p): ss.page = p
 
 # ---------- top bar ----------
-c1, c2, c3, c4 = st.columns([6, 1, 1, 1.5])
+c1, c2, c3, c4, c5 = st.columns([4.5, 1, 1, 1.5, 1.2])
+if c5.toggle("Dark mode", key="dark"): st.markdown(DARK_CSS, unsafe_allow_html=True)
 c1.markdown('<span class="logo">AquaClear</span>', unsafe_allow_html=True)
 c2.button("Gallery", on_click=go, args=("gallery",)); c3.button("About", on_click=go, args=("about",))
 if ss.page == "result": c4.button("New image", type="primary", on_click=go, args=("upload",))
